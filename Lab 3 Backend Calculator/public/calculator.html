@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Lab 2 - Calculator Routes</title>
+  </head>
+  <body>
+    <h1>Calculator Routes</h1>
+    <div>
+      <input id="num1" type="number">
+      <input id="num2" type="number">
+      <button onclick="addNumbers()">Add Numbers</button>
+      <button onclick="subNumbers()">Subtract Numbers</button>
+      <button onclick="divideNumbers()">Divide Numbers</button>
+      <button onclick="multiplyNumbers()">Multiply Numbers</button>
+    </div><br>
+    <div>Result:
+      <span id="result"></span>
+    </div>
+    <script>
+      function addNumbers() {
+        let num1 = document.getElementById('num1').value;
+        let num2 = document.getElementById('num2').value;
+
+        fetch(`/calc-routes/add?num1=${num1}&num2=${num2}`)
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById("result").innerHTML = data.result;
+        })
+      }
+
+      function subNumbers() {
+        let num1 = document.getElementById('num1').value;
+        let num2 = document.getElementById('num2').value;
+        
+        fetch(`/calc-routes/subtract?num1=${num1}&num2=${num2}`)
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById("result").innerHTML = data.result;
+        })
+      }
+
+      function divideNumbers() {
+        let num1 = document.getElementById('num1').value;
+        let num2 = document.getElementById('num2').value;
+
+        fetch(`/calc-routes/divide?num1=${num1}&num2=${num2}`)
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById("result").innerHTML = data.result;
+        })
+      }
+
+      function multiplyNumbers() {
+        let num1 = document.getElementById('num1').value;
+        let num2 = document.getElementById('num2').value;
+
+        fetch(`/calc-routes/multiply?num1=${num1}&num2=${num2}`)
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById("result").innerHTML = data.result;
+        })
+      }
+    </script>
+  </body>
+</html>

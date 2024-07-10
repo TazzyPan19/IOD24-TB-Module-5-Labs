@@ -1,0 +1,39 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "My Fake Store with Swagger Project",
+    "description": "My Fake Store with Swagger Application API",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "localhost:3300",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Fake Store With Swagger",
+      "description": "API Data for Fake Store Products"
+    }
+  ],
+  "schemes": ["http"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/products": {
+      "get": {
+        "tags": ["Products"],
+        "summary": "Array of product objects",
+        "responses": {
+          "200": {
+            "description": "This service allows you request a list of products from the Fake Store API"
+          },
+          "500": {
+            "description": "This is an Internal Server Error message"
+          }
+        }
+      }
+    }
+  }
+}
