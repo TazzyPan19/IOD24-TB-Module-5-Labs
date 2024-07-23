@@ -4,7 +4,6 @@ let allProducts;
 axios.get('/products')
     .then(response => { allProducts = response.data; loadProducts(response.data); loadFilterOptions(); })
 
-// loads the given list of products on the screen
 function loadProducts(products) {
     document.querySelector('#product-list').innerHTML = '';
 
@@ -18,7 +17,6 @@ function loadProducts(products) {
     if (products.length == 0) document.querySelector('#product-list').innerHTML = '<p>No matching products.</p>';
 }
 
-// clone, then populate, then append a new template
 function addProduct(item) {
 
     const template = document.getElementById("card-template").content.cloneNode(true);
@@ -34,19 +32,20 @@ function addProduct(item) {
     document.querySelector('#product-list').appendChild(template);
 }
 
-// displays an icon to match the product category 
-function getCategoryIcon(cat) {
-    switch (cat.toLowerCase()) {
-        case "men's clothing": return '<i class="fa-solid fa-shirt"></i> ';
-        case "women's clothing": return '<i class="fa-solid fa-person-dress"></i> ';
-        case "jewelery": return '<i class="fa-regular fa-gem"></i> ';
-        case "electronics": return '<i class="fa-solid fa-tv"></i> ';
+function getCategoryIcon(catergory) {
+    switch (catergory.toLowerCase()) {
+        case "men's clothing": 
+            return '<i class="fa-solid fa-shirt"></i> ';
+        case "women's clothing": 
+            return '<i class="fa-solid fa-person-dress"></i> ';
+        case "jewelery": 
+            return '<i class="fa-regular fa-gem"></i> ';
+        case "electronics": 
+            return '<i class="fa-solid fa-tv"></i> ';
     }
-    // default generic fallback if no matches
     return '<i class="fa-brands fa-shirtsinbulk"></i> ';
 }
 
-// populate the list of categories in the drop-down from the categories in the product data
 function loadFilterOptions() {
     let filterSelect = document.getElementById('category_filter')
     categories.forEach((slug, cat) => {
@@ -54,7 +53,6 @@ function loadFilterOptions() {
     });
 }
 
-// filter the list of products by the category chosen from the drop-down
 function filterProducts(e) {
     let selectedCategory = e.target.value;
     let filteredProducts = allProducts.filter(product => product.category == selectedCategory);
@@ -62,7 +60,6 @@ function filterProducts(e) {
     loadProducts(filteredProducts)
 }
 
-// sort the products by price or title
 function sortProducts(e) {
     let selectedOrder = e.target.value;
     let sortedProducts = [...allProducts];
@@ -77,7 +74,6 @@ function sortProducts(e) {
     loadProducts(sortedProducts)            
 }
 
-// filter the list of products (checking title, description and category) to those matching the search text
 function searchProducts() {
     let searchText = document.getElementById('searchText').value.toLowerCase();
     let filteredProducts = allProducts.filter(product => product.title.toLowerCase().indexOf(searchText) >= 0 ||
@@ -86,7 +82,6 @@ function searchProducts() {
     loadProducts(filteredProducts)
 }        
 
-// expand the truncated description to the full version when clicking the button
 function expandText(e, productId, fullDescription) {
     e.preventDefault();
     document.querySelector('#product' + productId + ' .card-text').innerText = fullDescription;
